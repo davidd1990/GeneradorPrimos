@@ -40,7 +40,7 @@ def dividir(x):
 def main():
     n = 100
     global p
-    #funcion que empieza lleva el tiempo en que se ejecuta los metodos
+    #funcion que empieza ha  llevar el tiempo en que se ejecuta el metodo
     t = time.time()
 
 
