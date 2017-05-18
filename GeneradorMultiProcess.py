@@ -42,9 +42,8 @@ if __name__ == "__main__":
 
     proc.join()
 
-    result = filter(None,result)
+    result = filter(None, result)
     print(result)
-
 
     print("trabajo terminado con threads : ", time.time()-t)
 
