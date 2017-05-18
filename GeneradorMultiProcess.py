@@ -29,28 +29,47 @@ def dividir(x):
             return True
 
 if __name__ == "__main__":
+    v = "y"
+    while v == "y":
 
-    n = 1000000
+        n = raw_input("Que numero deseas calcular")
+        try:
+            n = int(n)
+            print("Calculando.....")
+            t = time.time()
 
-    t = time.time()
+            proc = Pool()
 
-    proc = Pool()
+            result = [2] + proc.map(encontrar_primos_threads, range(3, n + 1, 2))
 
-    result = [2] + proc.map(encontrar_primos_threads, range(3, n + 1, 2))
+            proc.close()
 
-    proc.close()
+            proc.join()
 
-    proc.join()
+            result = filter(None, result)
 
-    result = filter(None, result)
-    print(result)
+            print(result)
 
-    print("trabajo terminado con threads : ", time.time()-t)
+            print("trabajo terminado con multiprocesamiento : ", time.time() - t)
 
-    #Aqui empieza el metodo normal sin ningun Thread
+            # Aqui empieza el metodo normal sin ningun Thread
 
-    t = time.time()
+            t = time.time()
 
-    encontrarprimos(n)
+            encontrarprimos(n)
 
-    print("trabajo terminado sin threads en : ", time.time()-t)
+            print("trabajo terminado sin multiprocesamiento en : ", time.time() - t)
+
+            v = raw_input("Deseas colocar otro numero y/n")
+            a = True
+            while a:
+                if v == "y" or v == "n":
+                    a = False
+                else:
+                    print("No entiendo lo que dices")
+                    v = raw_input("Deseas colocar otro numero y/n")
+
+        except ValueError:
+            print("Debes colocar un numero =(")
+
+    print("Gracias por participar")
