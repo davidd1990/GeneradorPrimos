@@ -16,12 +16,11 @@ def encontrarprimos(n):
 
 def encontrar_primos_threads(n):
     aux = n
-    while True:
+    global p
+    if not(dividir(aux)):
+        p.append(aux)
+        return aux
 
-        if not(dividir(aux)):
-            return aux
-        else:
-            aux += 1
 
 
 def dividir(x):
@@ -31,19 +30,21 @@ def dividir(x):
 
 if __name__ == "__main__":
 
-    n = 1000
+    n = 1000000
 
     t = time.time()
 
     proc = Pool()
 
-    result = proc.map(encontrar_primos_threads, range(3, n + 1, 2))
+    result = [2] + proc.map(encontrar_primos_threads, range(3, n + 1, 2))
 
     proc.close()
 
     proc.join()
 
+    result = filter(None,result)
     print(result)
+
 
     print("trabajo terminado con threads : ", time.time()-t)
 
